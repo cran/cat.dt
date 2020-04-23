@@ -4,8 +4,18 @@
 \alias{CAT_DT}
 \title{CAT decision tree}
 \usage{
-CAT_DT(bank, model = "GRM", crit = "MEPV", C = 0.3, stop = 6,
-  limit = 200, inters = 0.98, p = 0.9, dens, ...)
+CAT_DT(
+  bank,
+  model = "GRM",
+  crit = "MEPV",
+  C = 0.3,
+  stop = 6,
+  limit = 200,
+  inters = 0.98,
+  p = 0.9,
+  dens,
+  ...
+)
 }
 \arguments{
 \item{bank}{\code{data.frame} or \code{matrix} of the item bank.
@@ -49,17 +59,20 @@ Generates a \code{cat.dt} object containing the CAT decision tree.
 This object has all the necessary information to build the tree.
 }
 \examples{
+\dontrun{
 data("itemBank")
 # Build the cat.dt
 nodes = CAT_DT(bank = itemBank, model = "GRM", crit = "MEPV",
-               C = 0.3, stop = 2, limit = 200, inters = 0.98,
+               C = 0.3, stop = 6, limit = 200, inters = 0.98,
                p = 0.9, dens = dnorm, 0, 1)
 
 # Estimate the ability level of a subject with responses res
 CAT_ability_est(nodes, res = itemRes[1, ])
 # or
 nodes$predict(res = itemRes[1, ])
-
+# or
+predict(nodes, itemRes[1, ])
+}
 }
 \author{
 Javier Rodríguez-Cuadrado

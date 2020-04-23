@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>cat.dt tutorial</title>
+
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">cat.dt tutorial</h1>
+
+
+
+<p>The cat.dt package implements the Merged Tree-CAT method (Rodríguez-Cuadrado et al., 2019, <a href="https://doi.org/10.1016/j.eswa.2019.113066">doi.org/10.1016/j.eswa.2019.113066</a>) aimed at creating Computerized Adaptive Tests (CATs) in a fast and efficient way. The package stores the CAT in a tree structure where each node contains an item of the test. The examinee starts from a root node and progresses through the tree, depending on the responses provided to the items found.</p>
+<p>The cat.dt package includes the following functionalities:</p>
+<ul>
+<li>Building of the Tree-CAT.</li>
+<li>Graphical display of the Tree-CAT created.</li>
+<li>Estimation of the ability level for an individual or group of examinees.</li>
+<li>Graphical visualization of the evolution of the estimation of the ability level of each examinee according to their responses.</li>
+</ul>
+<div id="tree-cat-creation" class="section level2">
+<h2>Tree-CAT creation</h2>
+<p>The package can be installed from CRAN:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&quot;cat.dt&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">library</span>(cat.dt)</a></code></pre></div>
+<p>It can also be installed from the development version’s github repository <a href="https://github.com/jlaria/cat.dt">github.com/jlaria/cat.dt</a>.</p>
+<p>Once the package is installed, the Tree-CAT is built by calling the main function <code>CAT_DT</code>. This function has the following input parameters:</p>
+<ul>
+<li><code>bank</code>: Item bank. It must be a data frame in which each row represents an item and each column one of its parameters. If the probabilistic response model chosen is the Graded Response Model (GRM, polytomous items with ordered responses) (Samejima, 1969, <a href="https://doi.org/10.1007/BF03372160">doi.org/10.1007/BF03372160</a>), the first column must be the discrimination parameter and the remaining columns the difficulty (or location) parameters. If the model is the Nominal Response Model (NRM, polytomous items without ordered responses) (Bock, 1972, <a href="https://doi.org/10.1007/BF02291411">doi.org/10.1007/BF02291411</a>), the odd columns must be the slope parameters and the even columns the intercept parameters.</li>
+<li><code>model</code>: CAT probabilistic model. Options: <code>&quot;GRM&quot;</code> (default) and <code>&quot;NRM&quot;</code>.</li>
+<li><code>crit</code>: Item selection criterion. Options: <code>&quot;MEPV&quot;</code> for the Minimum Expected Posterior Variance (default) or <code>&quot;MFI&quot;</code> for the Maximum Fisher Information.</li>
+<li><code>C</code>: Expected fraction <span class="math inline">\(C\)</span> of participants administered with each item (exposure rate). It can be a vector with as many elements as items in the bank or a positive number if all the items have the same rate. Default: <code>C = 0.3</code>.</li>
+<li><code>stop</code>: Number <span class="math inline">\(L\)</span> of levels of the tree that indicate the number of items that are administered to each examinee (test length). It must be a natural number. Default: <code>stop = 6</code>.</li>
+<li><code>limit</code>: Maximum number <span class="math inline">\(N\)</span> of nodes per level (max. <span class="math inline">\(N=10000\)</span>). This is the main parameter that controls the tree growth. It must be a natural number. Default: <code>limit = 200</code>.</li>
+<li><code>inters</code>: Minimum intersection of the density functions of two nodes to be joined. It must be a number between 0 and 1. If the user wants to avoid using this criterion, <code>inters = 0</code> should be specified. Default: <code>inters = 0.98</code>.</li>
+<li><code>p</code>: Prior probability of the interval whose limits determine a threshold for the distance between estimations of nodes to join. Default: <code>p = 0.9</code>.</li>
+<li><code>dens</code>: Prior density function of the latent level. It must be an R function: <code>dnorm</code>, <code>dunif</code>, etc.</li>
+<li><code>...</code>: Parameters to <code>dens</code>.</li>
+</ul>
+<p>Therefore, it is necessary to have a bank of calibrated items in the form of ‘data.frame’ or ‘matrix’. The cat.dt package includes an item bank that will be used in this tutorial:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">data</span>(<span class="st">&quot;itemBank&quot;</span>)</a></code></pre></div>
+<p>The function <code>CAT_DT</code> is called and the tree is stored in the variable <code>TreeCAT</code>:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">TreeCAT =<span class="st"> </span><span class="kw">CAT_DT</span>(<span class="dt">bank =</span> itemBank, <span class="dt">model =</span> <span class="st">&quot;GRM&quot;</span>, <span class="dt">crit =</span> <span class="st">&quot;MEPV&quot;</span>, <span class="dt">C =</span> <span class="fl">0.3</span>, <span class="dt">stop =</span> <span class="dv">6</span>, <span class="dt">limit =</span> <span class="dv">200</span>, <span class="dt">inters =</span> <span class="fl">0.98</span>, <span class="dt">p =</span> <span class="fl">0.9</span>, <span class="dt">dens =</span> dnorm, <span class="dv">0</span>, <span class="dv">1</span>)</a></code></pre></div>
+<p>The function <code>CAT_DT</code> returns an object of class <code>cat.dt</code>. This object contains a list of the input parameters and also the following elements:</p>
+<ul>
+<li><p><code>nodes</code>: List with <span class="math inline">\(L+1\)</span> elements (levels). Each level contains a list of the nodes of the corresponding level. The nodes of the additional level <span class="math inline">\(L+1\)</span> only include the estimation and distribution of the ability level, given the responses to the items of the final level <span class="math inline">\(L\)</span>.</p></li>
+<li><p><code>C_left</code>: Residual exposure rate of each item after the CAT construction.</p></li>
+<li><p><code>predict</code>: Function that returns the estimated ability level of an examinee after each response and a Bayesian credible interval of the final estimation given their responses to the items from the item bank. These responses must be entered by the user as a numeric vector input. In addition, it returns a vector with the items that have been administered to the examinee and a plot object named <code>graphics</code> that represents the evolution of the ability level estimation through the test.</p></li>
+<li><p><code>predict_group</code>: Function that returns a list whose elements are the returned values of the function <code>predict</code> for every examinee.</p></li>
+</ul>
+</div>
+<div id="tree-cat-summary" class="section level2">
+<h2>Tree-CAT summary</h2>
+<p>The Tree-CAT summary is a description of the Tree-CAT that contains the following elements:</p>
+<ul>
+<li>The number of the Tree-CAT levels.</li>
+<li>The number of nodes in each Tree-CAT level.</li>
+<li>The psychometric probabilistic model used.</li>
+<li>The item selection criterion used.</li>
+<li>The exposure of every item from the bank after the Tree-CAT creation.</li>
+<li>The percentage of items used in the Tree-CAT creation.</li>
+</ul>
+<p>The summary is obtained in the following way:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">summary</span>(TreeCAT)</a></code></pre></div>
+<pre><code>## ----------------------------------------------------------------------
+## Number of tree levels: 6 
+## 
+## Number of nodes in level 1 : 4 
+## Number of nodes in level 2 : 14 
+## Number of nodes in level 3 : 39 
+## Number of nodes in level 4 : 99 
+## Number of nodes in level 5 : 101 
+## Number of nodes in level 6 : 124 
+## ----------------------------------------------------------------------
+## Psychometric probabilistic model: GRM 
+## Item selection criterion: MEPV 
+## ----------------------------------------------------------------------
+## Item exposure:
+## item  1 : 0.000   item  2 : 0.000   item  3 : 0.000   item  4 : 0.1704   
+## item  5 : 0.0469   item  6 : 0.000   item  7 : 0.0874   item  8 : 0.000   
+## item  9 : 0.000   item  10 : 0.000   item  11 : 0.300   item  12 : 0.000   
+## item  13 : 0.000   item  14 : 0.000   item  15 : 0.2416   item  16 : 0.000   
+## item  17 : 0.000   item  18 : 0.300   item  19 : 0.000   item  20 : 0.000   
+## item  21 : 0.0479   item  22 : 0.2565   item  23 : 0.000   item  24 : 0.000   
+## item  25 : 0.0312   item  26 : 0.000   item  27 : 0.000   item  28 : 0.000   
+## item  29 : 0.000   item  30 : 0.000   item  31 : 0.300   item  32 : 0.000   
+## item  33 : 0.0058   item  34 : 0.000   item  35 : 0.000   item  36 : 0.000   
+## item  37 : 0.000   item  38 : 0.000   item  39 : 0.2467   item  40 : 0.000   
+## item  41 : 0.000   item  42 : 0.000   item  43 : 0.0043   item  44 : 0.233   
+## item  45 : 0.000   item  46 : 0.000   item  47 : 0.000   item  48 : 0.000   
+## item  49 : 0.000   item  50 : 0.300   item  51 : 0.1022   item  52 : 0.000   
+## item  53 : 0.000   item  54 : 0.000   item  55 : 0.300   item  56 : 0.300   
+## item  57 : 0.000   item  58 : 0.000   item  59 : 0.2066   item  60 : 0.000   
+## item  61 : 0.300   item  62 : 0.000   item  63 : 0.0124   item  64 : 0.000   
+## item  65 : 0.000   item  66 : 0.0367   item  67 : 0.000   item  68 : 0.300   
+## item  69 : 0.000   item  70 : 0.300   item  71 : 0.000   item  72 : 0.000   
+## item  73 : 0.0111   item  74 : 0.000   item  75 : 0.000   item  76 : 0.000   
+## item  77 : 0.000   item  78 : 0.000   item  79 : 0.000   item  80 : 0.000   
+## item  81 : 0.000   item  82 : 0.000   item  83 : 0.300   item  84 : 0.000   
+## item  85 : 0.000   item  86 : 0.000   item  87 : 0.1062   item  88 : 0.000   
+## item  89 : 0.000   item  90 : 0.000   item  91 : 0.000   item  92 : 0.300   
+## item  93 : 0.2529   item  94 : 0.300   item  95 : 0.300   item  96 : 0.000   
+## item  97 : 0.000   item  98 : 0.000   item  99 : 0.000   item  100 : 0.000   
+## 
+## Percentage of items used: 31 %
+## ----------------------------------------------------------------------</code></pre>
+</div>
+<div id="tree-cat-visualization" class="section level2">
+<h2>Tree-CAT visualization</h2>
+<p>The Tree-CAT is displayed by calling the <code>plot_tree</code> function. This function takes as input arguments: i) The Tree-CAT created; ii) The number of levels to plot and iii) The index of the root node to start the test. For example, to visualize the first three levels of the tree starting by the root node two:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">plot_tree</span>(TreeCAT, <span class="dt">levels =</span> <span class="dv">3</span>, <span class="dt">tree =</span> <span class="dv">2</span>)</a></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --> The number within each node represents the item selected for that node and the color of each branch represents the response provided. In the figure above, we can see that the test starts with item 11. If we give answer 1 to that item, we will advance to item 18, and so on.</p>
+</div>
+<div id="evaluation-of-an-individual-and-a-group-of-examinees" class="section level2">
+<h2>Evaluation of an individual and a group of examinees</h2>
+<p>Once the Tree-CAT is created, it can be administered to an individual or a group of participants. To administer the Tree-CAT to an individual, the function <code>predict</code> is used. The arguments of this function are the object <code>Tree-CAT</code> of the class <code>cat.dt</code> and a vector that contains the responses provided by the individual to each item from the item bank. It is important to note that the responses must take integer values from <span class="math inline">\(1\)</span> upwards.</p>
+<p>As an example, the response dataset <code>itemRes</code> included in the package will be used. From that dataset, the first individual is evaluated (first row). The output is stored in the variable <code>individual_ev</code>:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">individual_ev =<span class="st"> </span><span class="kw">predict</span>(TreeCAT, itemRes[<span class="dv">1</span>, ])</a></code></pre></div>
+<p>This function returns a list with the following elements:</p>
+<ul>
+<li><p><code>estimation</code>: Ability level estimation after each response provided by the individual.</p></li>
+<li><p><code>llow</code>: Lower limit of the <span class="math inline">\(95\%\)</span> credible interval of the final estimation.</p></li>
+<li><p><code>llup</code>: Upper limit of the <span class="math inline">\(95\%\)</span> credible interval of the final estimation.</p></li>
+<li><p><code>items</code>: Items administered to the individual.</p></li>
+<li><p><code>graphics</code>: Plot object that represents the evolution of the ability level estimation after every response.</p></li>
+</ul>
+<p>The estimation output:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">individual_ev<span class="op">$</span>estimation</a></code></pre></div>
+<pre><code>## [1] -0.491765473 -0.006725585  0.014951695 -0.229596747 -0.185539957
+## [6]  0.011995639</code></pre>
+<p>The credible interval output:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">individual_ev<span class="op">$</span>llow</a></code></pre></div>
+<pre><code>## [1] -1.08</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">individual_ev<span class="op">$</span>lupp</a></code></pre></div>
+<pre><code>## [1] 1.11</code></pre>
+<p>The administered items output:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">individual_ev<span class="op">$</span>items</a></code></pre></div>
+<pre><code>## [1] 70 18 31 55 50 68</code></pre>
+<p>The plot of the evolution of the ability level estimation:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">individual_ev<span class="op">$</span>graphics</a></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+<p>This plot represents the estimation of the ability level after responding to each one of the test items. For example, giving the response <span class="math inline">\(1\)</span> to the item <span class="math inline">\(70\)</span> results in an estimate of <span class="math inline">\(-0.5\)</span>. Then, after giving the response <span class="math inline">\(3\)</span> to the item <span class="math inline">\(18\)</span>, the estimate increases to <span class="math inline">\(0\)</span> approximately, and so on. Note that the value of the response influences whether the estimate decreases or increases.</p>
+<p>This results can also be obtained by introducing</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1">individual_ev =<span class="st"> </span>TreeCAT<span class="op">$</span><span class="kw">predict</span>(itemRes[<span class="dv">1</span>, ])</a></code></pre></div>
+<p>or</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1">individual_ev =<span class="st"> </span><span class="kw">CAT_ability_est</span>(TreeCAT, itemRes[<span class="dv">1</span>, ])</a></code></pre></div>
+<p>Note: By repeating this same code, the results of this section may be different. If the tree has a number of root nodes greater than one, the same individual may start the test by a different root node and therefore obtain different results when performing the test again.</p>
+<p>The function <code>predict</code> is also used to evaluate a group of examinees. However, in this case, the vector of responses is replaced by a matrix containing in each row the answers of each examinee. This function returns a list, where each element in the list represents one of the examinees in the group. Each element contains a list with the same elements that the function returns when it is applied to an individual. As an example, we proceed to store the result in the variable <code>group_ev</code>:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1">group_ev =<span class="st"> </span><span class="kw">predict</span>(TreeCAT, itemRes)</a></code></pre></div>
+<p>If, for example, we want to know which items have been administered to examinee number 6:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1">group_ev[[<span class="dv">6</span>]]<span class="op">$</span>items</a></code></pre></div>
+<pre><code>## [1] 70 83 95 55 44  7</code></pre>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
