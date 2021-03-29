@@ -1,7 +1,7 @@
 Package: cat.dt
 Type: Package
 Title: Computerized Adaptive Testing and Decision Trees
-Version: 0.2.0
+Version: 0.3.0
 Imports: Rglpk, Matrix, ggplot2
 Authors@R: c(person("Javier",
            "Rodriguez-Cuadrado",,
@@ -19,9 +19,9 @@ URL: https://github.com/jlaria/cat.dt
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 NeedsCompilation: no
-Packaged: 2020-04-23 18:00:47 UTC; juank
+Packaged: 2021-03-29 11:52:32 UTC; rstudio
 Suggests: knitr, rmarkdown
 VignetteBuilder: knitr
 Author: Javier Rodriguez-Cuadrado [aut, cre],
@@ -29,4 +29,4 @@ Author: Javier Rodriguez-Cuadrado [aut, cre],
   David Delgado-Gomez [aut]
 Maintainer: Javier Rodriguez-Cuadrado <javierro@est-econ.uc3m.es>
 Repository: CRAN
-Date/Publication: 2020-04-23 22:00:10 UTC
+Date/Publication: 2021-03-29 14:20:11 UTC

@@ -11,7 +11,7 @@ library(cat.dt)
 data("itemBank")
 
 ## -----------------------------------------------------------------------------
-TreeCAT = CAT_DT(bank = itemBank, model = "GRM", crit = "MEPV", C = 0.3, stop = 6, limit = 200, inters = 0.98, p = 0.9, dens = dnorm, 0, 1)
+TreeCAT = CAT_DT(bank = itemBank, model = "GRM", crit = "MEPV", C = 0.3, stop = c(6, 0.6), limit = 200, inters = 0.98, p = 0.9, dens = dnorm, 0, 1)
 
 ## -----------------------------------------------------------------------------
 summary(TreeCAT)
