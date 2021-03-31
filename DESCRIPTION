@@ -1,7 +1,7 @@
 Package: cat.dt
 Type: Package
 Title: Computerized Adaptive Testing and Decision Trees
-Version: 0.3.0
+Version: 0.3.1
 Imports: Rglpk, Matrix, ggplot2
 Authors@R: c(person("Javier",
            "Rodriguez-Cuadrado",,
@@ -21,7 +21,7 @@ Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.1
 NeedsCompilation: no
-Packaged: 2021-03-29 11:52:32 UTC; rstudio
+Packaged: 2021-03-31 10:34:14 UTC; rstudio
 Suggests: knitr, rmarkdown
 VignetteBuilder: knitr
 Author: Javier Rodriguez-Cuadrado [aut, cre],
@@ -29,4 +29,4 @@ Author: Javier Rodriguez-Cuadrado [aut, cre],
   David Delgado-Gomez [aut]
 Maintainer: Javier Rodriguez-Cuadrado <javierro@est-econ.uc3m.es>
 Repository: CRAN
-Date/Publication: 2021-03-29 14:20:11 UTC
+Date/Publication: 2021-03-31 12:20:06 UTC

@@ -6,7 +6,7 @@
 #' @param ... not used
 #'
 #' @return A summary of the \code{cat.dt} object
-#' @author Javier Rodr?guez-Cuadrado
+#' @author Javier Rodríguez-Cuadrado
 #'
 #' @export
 summary.cat.dt = function(object, ...) {
@@ -36,7 +36,7 @@ summary.cat.dt = function(object, ...) {
   }
 
   cat("\n")
-  cat("Percentage of items used:", 100-sum(tree$C_left == 0.3)*100/length(tree$C),"%\n")
+  cat("Percentage of items used:", sum((tree$C-tree$C_left) > 0)*100/length(tree$C),"%\n")
 
   cat("----------------------------------------------------------------------\n")
 
